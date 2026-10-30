@@ -1,0 +1,10 @@
+[
+  {
+    "id": "synthetic-stationery",
+    "name": "Lunar Stationery Demo",
+    "domains": [
+      "lunar-stationery.example"
+    ],
+    "payoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET"
+  }
+]
