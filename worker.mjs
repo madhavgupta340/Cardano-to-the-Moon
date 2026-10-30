@@ -1,11 +1,13 @@
 import {execFileSync} from 'node:child_process';
 import {existsSync,readFileSync,writeFileSync} from 'node:fs';
 import {acquireWorkerLock} from './worker-lock.mjs';
-import {answer,client} from './client.mjs';
+import {answer as agentAnswer,client} from './client.mjs';
+import {createInvoiceAnswer} from './src/invoice-task.mjs';
 import {reply} from './comments.mjs';
 import {createPaidAdapter,isPaidReady} from './paid-task.mjs';
 import {taskTarget,isTaskForTarget} from './task-target.mjs';
 const target=taskTarget();
+const answer=createInvoiceAnswer({answer:agentAnswer});
 const id=target.coworkerId;
 const releaseLock=acquireWorkerLock();
 process.once('exit',releaseLock);
