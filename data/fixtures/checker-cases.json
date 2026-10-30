@@ -1,0 +1,181 @@
+[
+  {
+    "name": "01-clean",
+    "candidate": {
+      "sourceFile": "data/emails/01-clean.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-01",
+      "poNumber": "PO-DEMO-01",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 10,
+          "unitPrice": 100000
+        }
+      ],
+      "total": 1000000,
+      "statedPayoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [],
+      "headers": {
+        "from": "billing@lunar-stationery.example",
+        "replyTo": null
+      }
+    },
+    "expected": {
+      "result": "PASS",
+      "reasons": []
+    }
+  },
+  {
+    "name": "02-price-quantity",
+    "candidate": {
+      "sourceFile": "data/emails/02-price-quantity.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-02",
+      "poNumber": "PO-DEMO-01",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 11,
+          "unitPrice": 110000
+        }
+      ],
+      "total": 1210000,
+      "statedPayoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [],
+      "headers": {
+        "from": "billing@lunar-stationery.example",
+        "replyTo": null
+      }
+    },
+    "expected": {
+      "result": "FLAG",
+      "reasons": [
+        "AMOUNT_MISMATCH"
+      ]
+    }
+  },
+  {
+    "name": "03-no-po",
+    "candidate": {
+      "sourceFile": "data/emails/03-no-po.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-03",
+      "poNumber": "PO-UNKNOWN",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 10,
+          "unitPrice": 100000
+        }
+      ],
+      "total": 1000000,
+      "statedPayoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [],
+      "headers": {
+        "from": "billing@lunar-stationery.example",
+        "replyTo": null
+      }
+    },
+    "expected": {
+      "result": "FLAG",
+      "reasons": [
+        "NO_MATCHING_PO"
+      ]
+    }
+  },
+  {
+    "name": "04-duplicate",
+    "candidate": {
+      "sourceFile": "data/emails/04-duplicate.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-04",
+      "poNumber": "PO-DEMO-01",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 10,
+          "unitPrice": 100000
+        }
+      ],
+      "total": 1000000,
+      "statedPayoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [],
+      "headers": {
+        "from": "billing@lunar-stationery.example",
+        "replyTo": null
+      }
+    },
+    "expected": {
+      "result": "FLAG",
+      "reasons": [
+        "DUPLICATE_INVOICE"
+      ]
+    }
+  },
+  {
+    "name": "05-payment-redirection",
+    "candidate": {
+      "sourceFile": "data/emails/05-payment-redirection.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-05",
+      "poNumber": "PO-DEMO-01",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 10,
+          "unitPrice": 100000
+        }
+      ],
+      "total": 1000000,
+      "statedPayoutAddress": "SYNTHETIC_UNAPPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [
+        "URGENCY_LANGUAGE"
+      ],
+      "headers": {
+        "from": "billing@lunar-statlonery.example",
+        "replyTo": "pay@redirect.example"
+      }
+    },
+    "expected": {
+      "result": "FLAG",
+      "reasons": [
+        "PAYOUT_ADDRESS_MISMATCH",
+        "SENDER_DOMAIN_MISMATCH",
+        "REPLY_TO_MISMATCH",
+        "URGENCY_LANGUAGE"
+      ]
+    }
+  },
+  {
+    "name": "06-hidden-instructions",
+    "candidate": {
+      "sourceFile": "data/emails/06-hidden-instructions.eml",
+      "vendorName": "Lunar Stationery Demo",
+      "invoiceNumber": "INV-DEMO-06",
+      "poNumber": "PO-DEMO-01",
+      "lineItems": [
+        {
+          "description": "Paper reams",
+          "quantity": 10,
+          "unitPrice": 100000
+        }
+      ],
+      "total": 1000000,
+      "statedPayoutAddress": "SYNTHETIC_APPROVED_PAYOUT_NOT_A_WALLET",
+      "bodySignals": [
+        "HIDDEN_INSTRUCTIONS"
+      ],
+      "headers": {
+        "from": "billing@lunar-stationery.example",
+        "replyTo": null
+      }
+    },
+    "expected": {
+      "result": "FLAG",
+      "reasons": [
+        "HIDDEN_INSTRUCTIONS"
+      ]
+    }
+  }
+]

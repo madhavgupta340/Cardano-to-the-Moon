@@ -1,0 +1,12 @@
+[
+  {
+    "vendorId": "synthetic-stationery",
+    "poNumber": "PO-DEMO-01",
+    "lineItems": [
+      {
+        "description": "Paper reams",
+        "quantity": 10
+      }
+    ]
+  }
+]
