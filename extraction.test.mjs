@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { extractInvoice, parseEmail, pdfText } from './src/extract-invoice.mjs';
+import { extractInvoice, parseEmail, parseModelJson, pdfText } from './src/extract-invoice.mjs';
 import { evaluate } from './src/rules/index.mjs';
 const read = name => JSON.parse(readFileSync(new URL(name, import.meta.url)));
 const cases = read('./data/fixtures/checker-cases.json');
@@ -36,4 +36,9 @@ test('provider errors, malformed JSON fields and currency ambiguity stay held', 
     assert.ok(!JSON.stringify(candidate).includes('private provider detail'));
   }
   assert.equal(evaluate(await extractInvoice('data/emails/absent.eml'), erp).result, 'FLAG');
+});
+test('Gemini code-fence bug: one ```json fence is unwrapped, anything else stays strict', () => {
+  assert.deepEqual(parseModelJson('```json\n{"total": 1}\n```'), { total: 1 });
+  assert.deepEqual(parseModelJson('{"total": 1}'), { total: 1 });
+  for (const text of ['Here you go: ```json\n{"total": 1}\n```', '```json\n{"total": 1}\n```\n```json\n{"total": 2}\n```', '```json\n{"total": 1}']) assert.throws(() => parseModelJson(text));
 });

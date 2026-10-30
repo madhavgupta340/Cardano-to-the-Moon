@@ -81,6 +81,12 @@ export function parseEmail(raw) {
   return { headers: { from, replyTo }, body, pdfText: pdfText(pdf) };
 }
 
+/** Parses the model's JSON reply. Gemini wraps it in one ```json fence; anything else must be bare JSON. */
+export function parseModelJson(text) {
+  const fenced = text.trim().match(/^```(?:json)?[ \t]*\r?\n([\s\S]*?)\r?\n```$/);
+  return JSON.parse(fenced ? fenced[1] : text);
+}
+
 async function modelExtract(input) {
   const { ZAI_API_KEY: apiKey, ZAI_BASE_URL: baseURL, ZAI_MODEL: model } = process.env;
   if (!apiKey || !baseURL || !model || new URL(baseURL).protocol !== 'https:') fail();
@@ -91,7 +97,7 @@ async function modelExtract(input) {
     prompt: JSON.stringify({ emailBody: input.body, pdfText: input.pdfText }),
   });
   if (response.finishReason !== 'stop') fail();
-  return JSON.parse(response.text);
+  return parseModelJson(response.text);
 }
 
 /** One-argument production API; injected model is only a testing seam. Errors return a flaggable candidate, never raw provider errors. */
