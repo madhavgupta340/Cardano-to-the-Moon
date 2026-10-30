@@ -1,0 +1,67 @@
+{
+  "runId": "sample-run",
+  "createdAt": "2026-10-30T12:00:00.000Z",
+  "invoices": [
+    {
+      "candidate": {
+        "sourceFile": "data/emails/sample-pass.eml",
+        "vendorName": "Sample Supplies GmbH",
+        "invoiceNumber": "INV-1001",
+        "poNumber": "PO-2001",
+        "lineItems": [{ "description": "Printer paper", "quantity": 10, "unitPrice": 100000 }],
+        "total": 1000000,
+        "statedPayoutAddress": "addr_test1_PLACEHOLDER_NOT_A_REAL_ADDRESS",
+        "bodySignals": [],
+        "headers": { "from": "billing@sample-supplies.example", "replyTo": null }
+      },
+      "decision": {
+        "invoiceKey": "vendor-001:INV-1001",
+        "result": "PASS",
+        "reasons": [],
+        "vendorId": "vendor-001",
+        "approvedAmount": 1000000
+      },
+      "payment": {
+        "invoiceKey": "vendor-001:INV-1001",
+        "status": "PAID",
+        "amount": 1000000,
+        "txHash": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "candidate": {
+        "sourceFile": "data/emails/sample-flag.eml",
+        "vendorName": "Sample Supplies GmbH",
+        "invoiceNumber": "INV-1002",
+        "poNumber": null,
+        "lineItems": [{ "description": "Consulting", "quantity": 1, "unitPrice": 9000000 }],
+        "total": 9000000,
+        "statedPayoutAddress": "addr_test1_PLACEHOLDER_ATTACKER_ADDRESS",
+        "bodySignals": ["Urgent: our bank details have changed"],
+        "headers": {
+          "from": "billing@sample-suppl1es.example",
+          "replyTo": "pay@another-domain.example"
+        }
+      },
+      "decision": {
+        "invoiceKey": "vendor-001:INV-1002",
+        "result": "FLAG",
+        "reasons": [
+          "NO_MATCHING_PO",
+          "PAYOUT_ADDRESS_MISMATCH",
+          "SENDER_DOMAIN_MISMATCH",
+          "REPLY_TO_MISMATCH",
+          "URGENCY_LANGUAGE"
+        ],
+        "vendorId": "vendor-001",
+        "approvedAmount": null
+      },
+      "payment": {
+        "invoiceKey": "vendor-001:INV-1002",
+        "status": "HELD",
+        "amount": null,
+        "txHash": null
+      }
+    }
+  ]
+}
