@@ -10,15 +10,26 @@ Paste-ready text for the slides, following the outline in `docs/SUBMISSION.md`. 
 
 ## Slide 1: Customer and problem
 
-**Title:** One fake email can redirect a supplier payment
+**Title:** Google and Facebook paid over $120 million to a fake supplier
 
 **Text:**
 
-- A small company's finance team pays its suppliers in stablecoins.
-- They can't manually check every invoice.
-- A fake "new bank details" email, or an invoice that doesn't match what was ordered and delivered, is enough to pay the wrong amount or the wrong recipient.
+- **The case:** from 2013 to 2015, a fraudster posed as a real hardware supplier of Google and Facebook. Fake emails and forged invoices redirected payments meant for that supplier to his own bank accounts, more than $120 million in total. He was sentenced to five years in prison in 2019.
+- **Now picture a small finance team:**
+  - A small company's finance team pays its suppliers in stablecoins.
+  - They can't manually check every invoice.
+  - A fake "new bank details" email, or an invoice that doesn't match what was ordered and delivered, is enough to pay the wrong amount or the wrong recipient.
 
-**Visual:** a fake "new bank details" email, full screen, with the sender domain and the new payout address highlighted. Use a sample email from the data pack in `data/` `[TODO: screenshot once the checker branch adds the emails]`.
+**Source line (small, on the slide):** U.S. Department of Justice, Southern District of New York, press release, 19 December 2019. The victims are named in press coverage.
+
+**Visual:** a large "$120M+" next to the case, with "wired to a fake supplier, 2013–2015" underneath. The fake "new bank details" email from the data pack (`data/emails/05-payment-redirection.eml`) now belongs on slide 4 or in the video demo instead.
+
+**Note for the team:** this case is the one fact in the slides that doesn't come from this repo. It is checked against the primary source:
+
+- [DOJ press release on the sentencing](https://www.justice.gov/usao-sdny/pr/lithuanian-man-sentenced-5-years-prison-theft-over-120-million-fraudulent-business)
+- [Coverage naming the victims](https://www.sophos.com/en-us/blog/man-jailed-for-122-million-scam-that-fooled-google-and-facebook)
+
+The DOJ describes the victims without naming them, and press coverage names them. Keep the figure as "over $120 million", the DOJ's wording.
 
 ---
 
