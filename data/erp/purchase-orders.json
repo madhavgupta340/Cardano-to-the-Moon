@@ -1,0 +1,14 @@
+[
+  {
+    "vendorId": "synthetic-stationery",
+    "poNumber": "PO-DEMO-01",
+    "currency": "tUSDM",
+    "lineItems": [
+      {
+        "description": "Paper reams",
+        "quantity": 10,
+        "unitPrice": 100000
+      }
+    ]
+  }
+]

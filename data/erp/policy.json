@@ -1,0 +1,6 @@
+{
+  "maxInvoiceAmount": 2000000,
+  "processedInvoiceKeys": [
+    "synthetic-stationery:INV-DEMO-04"
+  ]
+}
