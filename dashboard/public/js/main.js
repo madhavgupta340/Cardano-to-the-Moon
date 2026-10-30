@@ -85,6 +85,8 @@ function isActive(href, raw) {
 
 function drawSidebar(raw) {
   const pendingApprovals = invoices().filter((i) => i.needsPerson).length;
+  // The list is rebuilt on every render, so keep the place the person scrolled to.
+  const navScroll = sidebar.querySelector(".nav-scroll")?.scrollTop ?? 0;
   sidebar.replaceChildren(
     h("a", { class: "brand", href: "#/" }, s("svg", { class: "brand-mark", viewBox: "0 0 64 64", "aria-hidden": "true" },
       s("path", { class: "mark-a", d: "M6 10H21L33 54H23Z" }),
@@ -101,6 +103,7 @@ function drawSidebar(raw) {
     h("a", { class: "profile", href: "#/settings/company" },
       h("span", { class: "avatar" }, COMPANY.user.initials),
       h("span", { class: "grow" }, h("strong", {}, COMPANY.user.name), h("span", { class: "muted tiny block" }, COMPANY.name))));
+  sidebar.querySelector(".nav-scroll").scrollTop = navScroll;
 }
 
 function searchBox() {
