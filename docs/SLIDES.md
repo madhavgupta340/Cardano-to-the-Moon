@@ -2,7 +2,7 @@
 
 Paste-ready text for the slides, following the outline in `docs/SUBMISSION.md`. The slides themselves live in Google Slides or Canva; put the link in `docs/SUBMISSION.md`.
 
-**Status:** `docs/PROOF.md` has no entries yet, so every capability below is described as planned. When proof lands, update the wording using the table in `docs/SUBMISSION.md` under "Wording to update when proof lands".
+**Status, updated Friday 30 October 19:01 from `docs/PROOF.md`:** the checker run and the paid Masumi job (escrow, result and seller receipt) are recorded. Paying suppliers through x402 and the dashboard on a real run aren't recorded, so they stay planned. Update the wording using the table in `docs/SUBMISSION.md` under "Wording to update when proof lands".
 
 **Screenshots:** check every screenshot before using it. No `.env` values, API keys, wallet seeds or terminal output with credentials. Crop browser bars that show account details.
 
@@ -63,7 +63,7 @@ The DOJ describes the victims without naming them, and press coverage names them
 **Text:**
 
 - **The customer pays the agent:** per batch, through Masumi on Sokosumi. The payment waits in escrow until the agent delivers, and the customer is refunded if it doesn't.
-- **The agent pays suppliers:** through x402 on Cardano preprod, and only for invoices that pass the checks.
+- **The agent pays suppliers:** through x402 on Cardano preprod, and only for invoices that pass the checks. *(Planned.)*
 
 **Visual:** two arrows, one above the other. Top: finance team → Masumi escrow → agent. Bottom: agent → x402 → supplier, with a gate labeled "checks passed".
 
@@ -75,9 +75,9 @@ The DOJ describes the victims without naming them, and press coverage names them
 
 **Text:**
 
-1. Hire the agent with a Sokosumi Task `[TODO: Task ID once recorded in docs/PROOF.md]`
+1. Hire the agent with a paid Sokosumi Task (`01a18d68-44d5-75ca-aba7-7c257905b5f2`); the payment waits in Masumi escrow.
 2. The agent reads the batch of invoice emails.
-3. Invoices that pass are paid through x402 `[TODO: transaction hash once recorded in docs/PROOF.md]`
+3. Invoices that pass are paid through x402. *(Planned.)* `[TODO: transaction hash once recorded in docs/PROOF.md]`
 4. Suspicious invoices are held, with reason codes.
 5. The overview links each payment to the preprod explorer.
 
@@ -134,7 +134,7 @@ The DOJ describes the victims without naming them, and press coverage names them
 - **Sokosumi:** where the finance team hires the agent
 - **x402:** supplier payments, only when the checks pass
 - **Cardano preprod:** test ADA and tUSDM
-- **Proof:** transaction `[TODO: hash from docs/PROOF.md]`
+- **Proof:** paid job, escrow lock on Cardano preprod: `388292c06046502df4ca46960033707ae7eee2be40fa05be56fde6835e2e236f`
 - **Code:** github.com/madhavgupta340/Cardano-to-the-Moon
 - **Team:** `[TODO: names]`
 
