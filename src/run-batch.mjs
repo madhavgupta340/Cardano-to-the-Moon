@@ -65,6 +65,8 @@ export async function runBatch(emlPaths, {
   const records = erp ?? await loadErp();
   await mkdir(runsDir, { recursive: true, mode: 0o700 });
   const path = join(runsDir, `${runId}.json`);
+  // Overwriting a run could erase a recorded payment attempt.
+  if ((await readdir(runsDir)).includes(`${runId}.json`)) throw new Error(`Run ${runId} already exists; inspect it before retrying`);
   const processed = [...records.processedInvoiceKeys, ...await priorPaymentKeys(runsDir)];
   const run = { runId, createdAt: now().toISOString(), invoices: [] };
   for (const emlPath of emlPaths) {

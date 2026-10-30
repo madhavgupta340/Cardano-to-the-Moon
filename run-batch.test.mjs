@@ -39,6 +39,8 @@ test('double payment: attempt is saved before sending, and an uncertain attempt 
   const second = await runBatch([clean], { extract, pay: crash, runsDir, runId: 'second', erp });
   assert.equal(calls, 1);
   assert.deepEqual(second.run.invoices[0].decision.reasons, ['DUPLICATE_INVOICE']);
+  await assert.rejects(runBatch([clean], { extract, pay: crash, runsDir, runId: 'first', erp }), /already exists/);
+  assert.equal(JSON.parse(readFileSync(join(runsDir, 'first.json'), 'utf8')).invoices[0].payment.status, 'ATTEMPTED');
 });
 
 test('a payer reply that does not match the approved amount is kept as an uncertain attempt', async () => {
