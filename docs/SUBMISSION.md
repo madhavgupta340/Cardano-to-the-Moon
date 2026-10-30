@@ -30,35 +30,42 @@ Context for the slides owner and their coding agent. Read `docs/PLAN.md` first: 
 
 ## Submission checklist
 
-Last updated Friday 30 October, 14:10, from `main` at commit `9dd65a4`. `docs/PROOF.md` had no entries, and no feature branch had commits yet.
+Last updated Friday 30 October, 19:01, from `main` at commit `4c4dfe9`.
 
 | # | Item | Status | Missing | Owner |
 | --- | --- | --- | --- | --- |
-| 1 | Transaction hash of a paid job or request on preprod | Not started | No entry in `docs/PROOF.md` | Person 2 (x402) `[TODO: name]` |
-| 2 | Demo video, at most 2:30 | Script drafted below | Working demo flow, screenshots, recording (planned Saturday 13:00), link | Slides owner with Person 2 and Person 3 |
-| 3 | Devfolio description | Drafted below | Proof-based wording, all `[TODO]`s, pasting into Devfolio | Slides owner |
-| 4 | Public repo with README covering setup, how to run it and its limits | Partly done | README still says full run commands will be added; confirm the repo is public before 14:30 | Everyone, README by the slides owner |
-| 5 | Slides | Text drafted in `docs/SLIDES.md` | Building them in Google Slides or Canva, screenshots, link above | Slides owner |
+| 1 | Transaction hash of a paid job or request on preprod | **Done.** `docs/PROOF.md` records a paid Sokosumi Task through Masumi escrow (lock transaction `388292c0…e236f`) and a checked seller receipt | Nothing for qualifying. A paid x402 supplier request is still not recorded | Person 3 (Masumi); x402 by Person 2 |
+| 2 | Demo video, at most 2:30 | Script updated to the recorded runs | Screenshots, the dashboard on a real run, recording (planned Saturday 13:00), link | Slides owner with Person 2 and Person 3 |
+| 3 | Devfolio description | Updated with the recorded proof | Remaining `[TODO]`s, pasting into Devfolio | Slides owner |
+| 4 | Public repo with README covering setup, how to run it and its limits | Partly done | The repo is public. The README still says full run commands will be added, and its opening says the agent pays suppliers through x402, which `docs/PROOF.md` doesn't record yet | Everyone, README by the slides owner |
+| 5 | Slides | Text in `docs/SLIDES.md`; a PDF draft was shared in chat | Building them in Google Slides or Canva, screenshots, link above | Slides owner |
 | 6 | Devfolio project and track | Not checked | Project created, team members added, Cardano track selected; other tracks still an open question in `docs/PLAN.md` | `[TODO: owner]` |
 
 ### Wording to update when proof lands
 
 Until `docs/PROOF.md` records each item, the drafts call it planned. When it does, update every place listed.
 
-| When `docs/PROOF.md` records | Update |
-| --- | --- |
-| A paid x402 request with its transaction hash | Devfolio "What we built" status and "Proof"; slide 4 step 3; slide 7 proof line; video beat 5 hash |
-| A Sokosumi Task that completed with a report | Devfolio "Proof"; slide 4 step 1; video beat 1 Task ID |
-| A paid Masumi job with a checked seller receipt | Keep the escrow lines in Devfolio, slide 3 and video beats 1 and 5. If it was dropped, remove them and add the drop to Devfolio "Limits". |
-| The dashboard showing a real run | Slide 4 screenshots; video beats 3 and 5 |
-| The checker flagging the hidden-instructions PDF | Slide 5 screenshot; video beat 4 |
+| When `docs/PROOF.md` records | Update | Status |
+| --- | --- | --- |
+| A paid x402 request with its transaction hash | Devfolio "What we built" status and "Proof"; slide 4 step 3; slide 7 proof line; video beat 5 hash | Pending |
+| A Sokosumi Task that completed with a report | Devfolio "Proof"; slide 4 step 1; video beat 1 Task ID | Applied 19:01 |
+| A paid Masumi job with a checked seller receipt | Keep the escrow lines in Devfolio, slide 3 and video beats 1 and 5. If it was dropped, remove them and add the drop to Devfolio "Limits". | Applied 19:01: kept, and the paid job is now the demo's end-to-end payment |
+| The dashboard showing a real run | Slide 4 screenshots; video beats 3 and 5 | Pending |
+| The checker flagging the hidden-instructions PDF | Slide 5 screenshot; video beat 4 | Recorded in the batch run; screenshot still needed |
 
 ### Open `[TODO]`s for the team
 
-- **Proof:** transaction hash, Sokosumi Task ID, and whether the paid Masumi job finishes or is dropped (`docs/PLAN.md` sets Saturday 11:00 as the cut-off).
-- **Demo details:** how many sample invoices pass, and which reason codes the dashboard shows for the fake bank-details email.
-- **Screenshots:** the fake bank-details email, the Sokosumi Task, the dashboard, the explorer transaction and the hidden-instructions PDF.
-- **Business case:** price per batch, how real suppliers would adopt x402, and next steps after the hackathon.
+- **Proof:** a paid x402 supplier request with its transaction hash. It's not needed to qualify, but the "agent pays suppliers" story stays planned until it lands.
+- **Screenshots:**
+  - the fake bank-details email (`data/emails/05-payment-redirection.eml`)
+  - the paid Sokosumi Task
+  - the dashboard on a real run
+  - the escrow transaction on the preprod explorer
+  - the hidden-instructions PDF
+- **Business case:** the price per batch, how real suppliers would adopt x402, and next steps after the hackathon. The recorded job used 1 tUSDM through escrow, and Sokosumi charged 100 credits. That is a test price, not a decision.
+- **Customer framing:** slide 1 no longer says the customer pays suppliers in stablecoins. `docs/PLAN.md`, the Devfolio summary and problem, and the video opening still do.
+- **Product name:** the dashboard and website say "Veridano". The slides, script and Devfolio say "Cardano to the Moon".
+- **README:** the run commands, and the x402 claim in its opening paragraph.
 - **People:** team names for slide 7, and branch owners, still marked TBD in `docs/PLAN.md`.
 - **Devfolio:** which other tracks, if any, we enter, and who sets up the project page.
 
