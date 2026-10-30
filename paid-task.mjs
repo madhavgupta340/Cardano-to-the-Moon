@@ -44,7 +44,8 @@ export async function createPaidAdapter({save,answer,core:providedCore,mps:provi
   const response=await fetch(`${process.env.MPS_URL}${path}`,{method:'POST',redirect:'error',signal:AbortSignal.timeout(30000),
    headers:{'Content-Type':'application/json',token:env.MPS_RUNTIME_TOKEN},body:JSON.stringify(body)});
   const data=await response.json();
-  if(!response.ok||data.status!=='success')throw new Error(`MPS ${path} failed HTTP ${response.status}. Inspect saved state before retry.`);
+  // MPS error messages describe the rejected field and contain no credentials.
+  if(!response.ok||data.status!=='success')throw new Error(`MPS ${path} failed HTTP ${response.status}: ${String(data?.error?.message??'').slice(0,200)}. Inspect saved state before retry.`);
   return data.data;
  }
  async function persist(task,state,paid){const next={...state,paid};await save(task.id,next);return next;}

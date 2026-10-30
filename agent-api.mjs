@@ -1,7 +1,9 @@
 import {createServer} from 'node:http';
 import {randomUUID} from 'node:crypto';
 import {existsSync,readFileSync,writeFileSync,mkdirSync,readdirSync} from 'node:fs';
-import {answer,client} from './client.mjs';
+import {answer as agentAnswer,client} from './client.mjs';
+import {createInvoiceAnswer} from './src/invoice-task.mjs';
+const answer=createInvoiceAnswer({answer:agentAnswer});
 import {inputHash,resultHash,sha256} from './standard-hash.mjs';
 import {confirmedState} from './paid-task.mjs';
 const jobsDir='.local/standard-jobs';mkdirSync(jobsDir,{recursive:true,mode:0o700});
@@ -13,7 +15,7 @@ export async function mps(path,body){
  const response=await fetch(process.env.MPS_URL+'/api/v1'+path,{method:body?'POST':'GET',headers:{token,'content-type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});
  const data=await response.json();if(!response.ok)throw new Error(`Payment service HTTP ${response.status}`);return data.data;
 }
-const schema={input_data:[{id:'prompt',type:'string',name:'Team brief',data:{description:'Describe your hackathon project and preferred name style.'},validations:[{validation:'min',value:'1'},{validation:'max',value:'16000'}]}]};
+const schema={input_data:[{id:'prompt',type:'string',name:'Invoice batch request',data:{description:'Ask for the invoice batch to be checked. You may name sample emails such as 05-payment-redirection; otherwise all samples are checked.'},validations:[{validation:'min',value:'1'},{validation:'max',value:'16000'}]}]};
 const respond=(res,status,data)=>{res.writeHead(status,{'content-type':'application/json'});res.end(JSON.stringify(data))};
 const port=Number(process.env.AGENT_API_PORT||21950);
 createServer(async(req,res)=>{
