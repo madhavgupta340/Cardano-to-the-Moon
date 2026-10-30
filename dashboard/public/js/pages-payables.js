@@ -231,7 +231,7 @@ export function invoicesPage(params) {
   return h("div", { class: "page" }, pageHead(view[0], view[2]), card({}, toolbar, h("div", { class: "toolbar-count" }, count), tableBox));
 }
 
-const rerender = () => window.dispatchEvent(new Event("clearline:render"));
+const rerender = () => window.dispatchEvent(new Event("veridano:render"));
 
 function documentPreview(i) {
   const s = i.supplierObj;

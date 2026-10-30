@@ -12,7 +12,7 @@ const RUNS_DIR = url("../runs/");
 const LOCAL_DIR = url("./.local/");
 const REVIEWS = url("./.local/reviews.json");
 const PUBLIC_DIR = fileURLToPath(url("./public/"));
-const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8" };
+const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml" };
 const PORT = Number(process.env.PORT ?? 4173);
 
 const readRun = (file) => Run.parse(JSON.parse(readFileSync(file, "utf8")));

@@ -9,7 +9,7 @@ import {
   integrationsPage, matchingPage, notificationsPage, permissionsPage, posPage, riskPage, rulesPage, supplierDetail, suppliersPage, teamPage,
   transactionsPage, txDetail, walletPage,
 } from "./pages-operations.js";
-import { button, empty, h, icon, notice, pageHead, toast } from "./ui.js";
+import { button, empty, h, icon, notice, pageHead, s, toast } from "./ui.js";
 
 const NAV = [
   ["Overview", "home", [["Main dashboard", "#/"], ["Run overview", "#/run"], ["Financial activity", "#/activity"], ["AI insights", "#/insights"]]],
@@ -86,7 +86,9 @@ function isActive(href, raw) {
 function drawSidebar(raw) {
   const pendingApprovals = invoices().filter((i) => i.needsPerson).length;
   sidebar.replaceChildren(
-    h("a", { class: "brand", href: "#/" }, h("span", { class: "brand-mark", "aria-hidden": "true" }, "C"), h("span", {}, "Clearline")),
+    h("a", { class: "brand", href: "#/" }, s("svg", { class: "brand-mark", viewBox: "0 0 64 64", "aria-hidden": "true" },
+      s("path", { class: "mark-a", d: "M6 10H21L33 54H23Z" }),
+      s("path", { class: "mark-b", d: "M43 10H58L42 54L35.5 31Z" })), h("span", {}, "Veridano")),
     h("div", { class: "nav-scroll" }, NAV.map(([title, ic, items]) => {
       const closed = collapsed.has(title);
       return h("div", { class: "nav-group" },
@@ -125,7 +127,7 @@ function searchBox() {
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem("clearline-theme", theme); } catch { /* storage can be blocked */ }
+  try { localStorage.setItem("veridano-theme", theme); } catch { /* storage can be blocked */ }
 }
 
 function popover(trigger, build) {
@@ -215,7 +217,7 @@ function boot() {
   root.replaceChildren(sidebar, h("div", { class: "scrim", onclick: () => document.body.classList.remove("nav-open") }), main, ...assistantPanel());
   subscribe(render);
   window.addEventListener("hashchange", render);
-  window.addEventListener("clearline:render", render);
+  window.addEventListener("veridano:render", render);
   render();
   loadRuns();
 }

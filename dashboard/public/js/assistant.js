@@ -109,6 +109,6 @@ export function assistantPanel() {
     fab.hidden = open;
     if (open) input.focus();
   }
-  window.addEventListener("clearline:ask", (e) => { toggle(true); ask(e.detail); });
+  window.addEventListener("veridano:ask", (e) => { toggle(true); ask(e.detail); });
   return [panel, fab];
 }

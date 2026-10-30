@@ -3,7 +3,7 @@
 import { DEFAULT_LIMITS, DEFAULT_PERMS, GRS, HISTORY, INVOICES, POS, SUPPLIERS, TODAY } from "./data.js";
 import { evaluate, total } from "./rules.js";
 
-const KEY = "clearline-state-v1";
+const KEY = "veridano-state-v1";
 
 const fresh = () => ({
   limits: { ...DEFAULT_LIMITS },

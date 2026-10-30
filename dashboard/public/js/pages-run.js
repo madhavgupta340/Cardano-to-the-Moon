@@ -106,7 +106,7 @@ export function runPage() {
     pageHead("Run overview", `${run.runId} · ${when(run.createdAt)} · Cardano Preprod (test)`,
       entries.length > 1 ? h("label", { class: "field" }, "Run ", h("select", {
         class: "plain-select",
-        onchange: (e) => { selected = e.target.value; window.dispatchEvent(new Event("clearline:render")); },
+        onchange: (e) => { selected = e.target.value; window.dispatchEvent(new Event("veridano:render")); },
       }, entries.map((e) => h("option", { value: e.run.runId, selected: e.run.runId === run.runId }, e.run.runId)))) : null),
     sample ? notice("Sample data from data/fixtures/run.sample.json. No real run exists yet, and nothing here happened on chain.") : null,
     h("div", { class: "grid kpis" },
