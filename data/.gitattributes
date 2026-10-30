@@ -1,2 +1,2 @@
 *.pdf binary
-*.eml -text
+*.eml text eol=crlf
