@@ -1,0 +1,16 @@
+[
+  {
+    "name": "masumi",
+    "repository": "https://github.com/masumi-network/masumi-skills",
+    "commit": "3eabe4a243dfd3ee326a105736215eeb0d83c787",
+    "archive": "archives/masumi-3eabe4a243dfd3ee326a105736215eeb0d83c787.zip",
+    "sha256": "66167993910e2a1e1b0a8b5e038ff54aaa7999c5065b22db33e4d2a53f26a559"
+  },
+  {
+    "name": "cardano",
+    "repository": "https://github.com/cardano-foundation/cardano-dev-skills",
+    "commit": "deab0385bc7b6bcddabab0feb363419ee4eb5a27",
+    "archive": "archives/cardano-deab0385bc7b6bcddabab0feb363419ee4eb5a27.zip",
+    "sha256": "bb8eadcc695120635ab89ef125e2c35f3aaff7d2b340a669396749c03dcd73ae"
+  }
+]
