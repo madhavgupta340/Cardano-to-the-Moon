@@ -62,13 +62,15 @@ export async function runBatch(emlPaths, {
 } = {}) {
   if (!Array.isArray(emlPaths) || !emlPaths.length) throw new Error('runBatch needs at least one .eml path');
   if (!/^[A-Za-z0-9_-]{1,100}$/.test(runId)) throw new Error('runId must be a simple file name');
-  const records = erp ?? await loadErp();
   await mkdir(runsDir, { recursive: true, mode: 0o700 });
   const path = join(runsDir, `${runId}.json`);
-  // Overwriting a run could erase a recorded payment attempt.
-  if ((await readdir(runsDir)).includes(`${runId}.json`)) throw new Error(`Run ${runId} already exists; inspect it before retrying`);
-  const processed = [...records.processedInvoiceKeys, ...await priorPaymentKeys(runsDir)];
   const run = { runId, createdAt: now().toISOString(), invoices: [] };
+  // Reserve the file before anything else: overwriting a run would erase its payment record.
+  // The 'wx' flag fails atomically if it exists, so two runs with one runId cannot both start.
+  try { await writeFile(path, JSON.stringify(Run.parse(run), null, 2) + '\n', { flag: 'wx', mode: 0o600 }); }
+  catch (e) { if (e.code === 'EEXIST') throw new Error(`Run ${runId} already exists; inspect it before retrying`); throw e; }
+  const records = erp ?? await loadErp();
+  const processed = [...records.processedInvoiceKeys, ...await priorPaymentKeys(runsDir)];
   for (const emlPath of emlPaths) {
     const candidate = await extract(emlPath);
     const decision = evaluate(candidate, { ...records, processedInvoiceKeys: processed });

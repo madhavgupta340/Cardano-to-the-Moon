@@ -39,9 +39,22 @@ test('double payment: attempt is saved before sending, and an uncertain attempt 
   const second = await runBatch([clean], { extract, pay: crash, runsDir, runId: 'second', erp });
   assert.equal(calls, 1);
   assert.deepEqual(second.run.invoices[0].decision.reasons, ['DUPLICATE_INVOICE']);
-  await assert.rejects(runBatch([clean], { extract, pay: crash, runsDir, runId: 'first', erp }), /already exists/);
-  assert.equal(JSON.parse(readFileSync(join(runsDir, 'first.json'), 'utf8')).invoices[0].payment.status, 'ATTEMPTED');
 });
+
+test('reused runId: throws before extracting or paying and leaves the earlier payment record intact (PR #8)', async () => {
+  const runsDir = tempRuns(), erp = await loadErp();
+  const pay = async d => ({ invoiceKey: d.invoiceKey, status: 'PAID', amount: d.approvedAmount, txHash: 'ef'.repeat(32) });
+  await runBatch([clean], { extract, pay, runsDir, runId: 'reused', erp });
+  const before = readFileSync(join(runsDir, 'reused.json'), 'utf8');
+  let touched = 0;
+  const spy = async () => { touched++; };
+  await assert.rejects(runBatch([clean], { extract: spy, pay: spy, runsDir, runId: 'reused', erp }), /already exists/);
+  assert.equal(touched, 0);
+  assert.equal(readFileSync(join(runsDir, 'reused.json'), 'utf8'), before);
+  const racing = await Promise.allSettled([1, 2].map(() => runBatch([clean], { extract, pay, runsDir: tempRunsShared, runId: 'race', erp })));
+  assert.deepEqual(racing.map(r => r.status).sort(), ['fulfilled', 'rejected']);
+});
+const tempRunsShared = tempRuns();
 
 test('a payer reply that does not match the approved amount is kept as an uncertain attempt', async () => {
   const pay = async d => ({ invoiceKey: d.invoiceKey, status: 'PAID', amount: d.approvedAmount + 1, txHash: 'cd'.repeat(32) });
