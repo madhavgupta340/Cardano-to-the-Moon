@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veridano</title>
+<link rel="icon" type="image/svg+xml" href="/veridano-mark.svg">
+<script>
+  // Set before first paint so dark mode doesn't flash.
+  try {
+    const saved = localStorage.getItem("veridano-theme");
+    if (saved) document.documentElement.dataset.theme = saved;
+  } catch {}
+</script>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="app" class="app">
+  <div class="boot" role="status">
+    <div class="skeleton wide"></div>
+    <div class="skeleton-row"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+    <div class="skeleton tall"></div>
+    <span class="sr">Loading</span>
+  </div>
+</div>
+<div id="tip" class="tip" role="tooltip"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript><p>This dashboard needs JavaScript.</p></noscript>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
