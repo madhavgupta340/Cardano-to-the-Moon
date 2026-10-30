@@ -16,13 +16,21 @@ Paste-ready text for the slides, following the outline in `docs/SUBMISSION.md`. 
 
 - **The case:** from 2013 to 2015, a fraudster posed as a real hardware supplier of Google and Facebook. Fake emails and forged invoices redirected payments meant for that supplier to his own bank accounts, more than $120 million in total. He was sentenced to five years in prison in 2019.
 - **Now picture a small finance team:**
-  - A small company's finance team pays its suppliers in stablecoins.
+  - A small company's finance team pays supplier invoices that arrive by email.
   - They can't manually check every invoice.
   - A fake "new bank details" email, or an invoice that doesn't match what was ordered and delivered, is enough to pay the wrong amount or the wrong recipient.
 
-**Source line (small, on the slide):** U.S. Department of Justice, Southern District of New York, press release, 19 December 2019. The victims are named in press coverage.
+**Headlines (quote exactly, with outlet and date):**
 
-**Visual:** a large "$120M+" next to the case, with "wired to a fake supplier, 2013–2015" underneath. The fake "new bank details" email from the data pack (`data/emails/05-payment-redirection.eml`) now belongs on slide 4 or in the video demo instead.
+| Outlet | Date | Headline |
+| --- | --- | --- |
+| [Fortune](https://fortune.com/2017/04/27/facebook-google-rimasauskas/) | 27 April 2017 | Exclusive: Facebook and Google Were Victims of $100M Payment Scam |
+| [NPR](https://www.wamc.org/2019-03-25/man-pleads-guilty-to-phishing-scheme-that-fleeced-facebook-google-of-100-million) | 25 March 2019 | Man Pleads Guilty To Phishing Scheme That Fleeced Facebook, Google Of $100 Million |
+| [Sophos Naked Security](https://www.sophos.com/en-us/blog/man-jailed-for-122-million-scam-that-fooled-google-and-facebook) | December 2019 | Man jailed for $122 million scam that fooled Google and Facebook |
+
+**Source line (small, on the slide):** Fortune, 27 Apr 2017; NPR, 25 Mar 2019; Sophos Naked Security, Dec 2019; U.S. Department of Justice, Southern District of New York, 19 Dec 2019.
+
+**Visual:** the three headlines as overlapping newspaper clippings on the left. On the right, a large "$120M+" with "wired to a fake supplier, 2013–2015" underneath, then the small-finance-team points. The fake "new bank details" email from the data pack (`data/emails/05-payment-redirection.eml`) belongs on slide 4 or in the video demo instead.
 
 **Note for the team:** this case is the one fact in the slides that doesn't come from this repo. It is checked against the primary source:
 
