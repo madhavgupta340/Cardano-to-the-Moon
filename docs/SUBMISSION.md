@@ -42,7 +42,67 @@ Keep it to about seven slides. The video has to cover who it's for, the problem,
 
 ## Video script
 
-`[TODO]`: write once the demo flow runs. Target 2 minutes 30 seconds at most.
+**Status: draft.** The demo lines describe the planned flow from `docs/PLAN.md`. Rewrite them against the real run before recording, and say "working" only for what `docs/PROOF.md` records.
+
+**Length:** 2:30 at most. The demo gets 1:25 of that. With the `[TODO]`s filled in, the narration is about 290 words, roughly 2 minutes at a calm pace, which leaves room for clicks. If a practice run goes over, shorten demo beat 2 first.
+
+### 0:00–0:15 · Customer and problem
+
+**On screen:** the fake "new bank details" email, full screen, with the sender domain and payout address highlighted. `[TODO: screenshot from the data pack]`
+
+> This email asks a finance team to pay an invoice to a new address. Small teams paying suppliers in stablecoins can't check every invoice by hand. One email like this can pay the wrong recipient.
+
+### 0:15–0:27 · The agent
+
+**On screen:** slide 3, the two payment stories.
+
+> So we built an invoice agent. Finance teams hire it per batch on Sokosumi, through Masumi escrow, and it pays suppliers through x402, only for invoices that pass.
+
+### 0:27–1:52 · Demo: one batch from hire to explorer link
+
+**Beat 1 (0:27–0:40) · Hire.** On screen: creating the Sokosumi Task for the batch. `[TODO: Task ID from docs/PROOF.md]`
+
+> The finance team hires our agent on Sokosumi and hands it this week's invoice emails.
+
+- **If the paid Masumi job works:** add "Their payment now waits in escrow until the agent delivers." and show the escrow payment.
+- **If it was dropped:** leave that line out, and don't show or mention escrow as working.
+
+**Beat 2 (0:40–0:55) · Checks.** On screen: the agent processing the batch. Crop any terminal so no `.env` values or keys are visible.
+
+> The agent reads each email and PDF. The LLM only extracts the fields. Code parses the headers, and a rule engine checks every invoice against the company's purchase orders, goods receipts and vendor master.
+
+**Beat 3 (0:55–1:20) · Results.** On screen: the dashboard, paid invoices and held invoices, then zoom into the fake bank-details email from the opening.
+
+> `[TODO: number]` invoices pass and are paid. The others are held for a person. Here's the email from the start: held, because `[TODO: read out the reason codes the dashboard actually shows, for example the lookalike sender domain, the Reply-To and the payout address that isn't on file]`.
+
+**Beat 4 (1:20–1:35) · Hidden instructions.** On screen: the PDF with its hidden text revealed, next to its `HIDDEN_INSTRUCTIONS` flag. `[TODO: screenshot once the checker flags it]`
+
+> This invoice hides white text telling an AI to approve and pay. It's flagged. And it couldn't move money anyway, because the payout address and amount never come from the invoice.
+
+**Beat 5 (1:35–1:52) · Paid request, end to end.** On screen: click a paid invoice's explorer link and show the transaction on the preprod explorer, then the report delivered to the customer.
+
+> Every payment links to the preprod explorer. Here is the x402 payment to the supplier. The report goes back to the finance team, which completes the job.
+
+- **If the paid Masumi job works:** end with "and releases their escrow payment to the agent."
+- **Transaction hash on screen:** `[TODO: from docs/PROOF.md]`
+
+### 1:52–2:17 · Business case and real use
+
+**On screen:** slide 6.
+
+> Finance teams pay per batch, only when the agent delivers. `[TODO: price per batch, once agreed]` For real use, we'd connect a real inbox and ERP, and suppliers would need to accept x402. Today, the invoices are synthetic, the supplier's x402 endpoint is a mock we run ourselves, and everything runs on preprod.
+
+### 2:17–2:30 · Close
+
+**On screen:** slide 7: tools, transaction hash, repo link.
+
+> Cardano to the Moon: an invoice agent that only pays what checks out. Built with Masumi, Sokosumi and x402 on Cardano.
+
+### Recording notes
+
+- Record the demo from a real run. Cutting out waiting time is fine. Never cut in a way that hides a failure, and never stage a result.
+- Before recording, close every window that shows `.env` files, keys, wallet seeds or account settings.
+- Practise once with a timer, then record the narration over the screen capture.
 
 ## Devfolio description
 
